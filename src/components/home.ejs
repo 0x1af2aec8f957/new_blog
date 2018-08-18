@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html website="<%= host %>" date="<%= date %>">
+<head>
+    <% include ../template/head %>
+</head>
+<body>
+<!-- Welcome to <%= host %> -->
+<section class="hero is-dark is-bold is-fullheight">
+    <% include ../template/header %>
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <p class="title is-spaced fadeInDown animated">
+                <%= title %>
+            </p>
+            <p class="subtitle fadeInUp animated">
+                <%= subtitle %>
+            </p>
+        </div>
+    </div>
+    <% include ../template/footer %>
+</section>
+</body>
+</html>

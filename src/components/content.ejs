@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html website="<%= host %>" date="<%= date %>">
+<head>
+    <% include ../template/head %>
+    <link rel="stylesheet" href="/atom-one-light.css">
+    <script src="/highlight.pack.js"></script>
+</head>
+<body>
+<!-- Welcome to <%= host %> -->
+<section class="hero is-white is-fullheight">
+    <% include ../template/header %>
+    <div class="hero-body">
+        <div class="container is-widescreen">
+            <div class="content is-8 hero">
+                <%- content %>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+<script>hljs.initHighlightingOnLoad()</script>
+</html>

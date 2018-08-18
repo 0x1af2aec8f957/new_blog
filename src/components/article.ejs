@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html website="<%= host %>" date="<%= date %>">
+<head>
+    <% include ../template/head %>
+    <style>
+        .nav-bar .is-active {
+            color: #3273dc !important;
+        }
+
+        .nav-bar::before {
+            content: "文章分类...";
+            transform: scale(.76);
+            color: #7a7a7a
+        }
+
+        @media screen and (max-width: 1087px) {
+            .breadcrumb ol, .breadcrumb ul {
+                flex-direction: column;
+            }
+
+            .breadcrumb li:before {
+                color: #b5b5b5;
+                content: "\02022";
+            }
+
+            .breadcrumb li:first-child a {
+                padding-left: 0.75em;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Welcome to <%= host %> -->
+<section class="hero is-white is-fullheight">
+    <% include ../template/header %>
+    <div class="hero-body">
+        <div class="container">
+            <nav class="breadcrumb has-bullet-separator is-small" aria-label="breadcrumbs">
+                <ul class="animated slideInLeft nav-bar">
+                    <% nav.forEach(item=>{ %>
+                        <li>
+                            <a class="<%= type === item ? 'is-active' : '' %>"
+                               href="/article?type=<%= item %>"><%= item %>
+                            </a>
+                        </li>
+                    <% }) %>
+                </ul>
+            </nav>
+            <div class="columns">
+                <% articles.forEach(article=>{ %>
+                    <div class="column is-one-third animated zoomIn">
+                        <a href="/article/<%= article.title %>?type=<%= type %>">
+                            <div class="card">
+                                <div class="card-image">
+                                    <figure class="image is-4by3">
+                                        <img src="data:image/jpg;base64,<%= article.cover %>"
+                                             alt="Placeholder image">
+                                    </figure>
+                                </div>
+                                <div class="card-content content">
+                                    <p><%= article.title %></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

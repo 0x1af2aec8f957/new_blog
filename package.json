@@ -1,0 +1,19 @@
+{
+  "name": "blog",
+  "version": "2.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "author": "Ed Me",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "koa": "^2.5.2",
+    "koa-bodyparser": "^4.2.1",
+    "koa-compose": "^4.1.0",
+    "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0",
+    "koa-views": "^6.1.4",
+    "showdown": "^1.8.6"
+  }
+}
