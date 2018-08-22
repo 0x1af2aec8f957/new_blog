@@ -1,11 +1,20 @@
 <div class="hero-head">
     <nav class="navbar">
+        <!--<div id="specialShadow" class="bd-special-shadow" style="opacity: 1;transform: scaleY(1);"></div>-->
         <div class="container">
             <div class="navbar-brand">
                 <a class="navbar-item" href="/">
                     <img src="https://lqzhgood.github.io/bulma-docs-cn/images/bulma-type-white.png" alt="Logo">
                 </a>
-                <span class="navbar-burger burger" data-target="navbarMenuHeroB">
+                <style>
+                    @media screen and (max-width: 1087px){
+                        .text-ellipsis{
+                            max-width: 36.666%
+                        }
+                    }
+                </style>
+                <h1 class="navbar-item text-ellipsis has-text-centered"><%- caption %></h1>
+                <span id="navbar-burger" class="navbar-burger burger" data-target="navbarMenuHeroB">
             <span></span>
             <span></span>
             <span></span>
@@ -13,17 +22,17 @@
             </div>
             <div id="navbarMenuHeroB" class="navbar-menu">
                 <div class="navbar-end">
-                    <a class="navbar-item <%= path==='/article' ? 'is-active' : '' %>" href="/article">
+                    <a class="navbar-item <%= path === '/article' ? 'is-active' : '' %>" href="/article">
                         目录
                     </a>
-                    <a class="navbar-item <%= path==='/donate' ? 'is-active' : '' %>" href="/donate">
+                    <a class="navbar-item <%= path === '/donate' ? 'is-active' : '' %>" href="/donate">
                         捐赠
                     </a>
-                    <a class="navbar-item <%= path==='/about' ? 'is-active' : '' %>" href="/about">
+                    <a class="navbar-item <%= path === '/about' ? 'is-active' : '' %>" href="/about">
                         关于
                     </a>
                     <span class="navbar-item">
-                          <a class="button is-small">
+                          <a class="button is-small" target="_blank" href="https://github.com/noteScript/new_blog">
                             <span class="icon is-small">
                               <i class="fab fa-github"></i>
                             </span>
@@ -34,4 +43,12 @@
             </div>
         </div>
     </nav>
+    <script>
+      var $n = document.getElementById('navbar-burger'),
+        $m = document.getElementById('navbarMenuHeroB');
+      $n.onclick = function () {
+        this.classList[this.className.indexOf('is-active') > -1 ? 'remove' : 'add']('is-active');
+        $m.classList[$m.className.indexOf('is-active') > -1 ? 'remove' : 'add']('is-active');
+      }
+    </script>
 </div>

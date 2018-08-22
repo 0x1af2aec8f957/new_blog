@@ -31,42 +31,66 @@
 </head>
 <body>
 <!-- Welcome to <%= host %> -->
-<section class="hero is-white is-fullheight">
+<section class="hero is-white is-fullheight transition-all" id="content-m">
     <% include ../template/header %>
     <div class="hero-body">
         <div class="container">
-            <nav class="breadcrumb has-bullet-separator is-small" aria-label="breadcrumbs">
-                <ul class="animated slideInLeft nav-bar">
-                    <% nav.forEach(item=>{ %>
-                        <li>
-                            <a class="<%= type === item ? 'is-active' : '' %>"
-                               href="/article?type=<%= item %>"><%= item %>
+            <div class="field is-grouped is-grouped-centered">
+                <div class="control">
+                    <input id="search-input" class="input" type="text" placeholder="Find articles">
+                </div>
+                <div class="control">
+                    <a class="button is-info">
+                        Search
+                    </a>
+                </div>
+            </div>
+            <div id="content-c">
+                <nav class="breadcrumb has-bullet-separator is-small" aria-label="breadcrumbs">
+                    <ul class="animated slideInLeft nav-bar">
+                        <% nav.forEach(item=>{ %>
+                            <li>
+                                <a class="<%= type === item ? 'is-active' : '' %>"
+                                   href="/article?type=<%= item %>"><%= item %>
+                                </a>
+                            </li>
+                        <% }) %>
+                    </ul>
+                </nav>
+                <div class="columns">
+                    <% articles.forEach(article=>{ %>
+                        <div class="column is-one-fifth animated zoomIn">
+                            <a href="/article/<%= article.title %>?type=<%= type %>">
+                                <div class="card">
+                                    <div class="card-image">
+                                        <figure class="image is-2by1">
+                                            <img src="data:image/jpg;base64,<%= article.cover %>"
+                                                 alt="Placeholder image">
+                                        </figure>
+                                    </div>
+                                    <div class="card-content content padding-1rem">
+                                        <p class="subtitle is-7"><%= article.title %></p>
+                                    </div>
+                                </div>
                             </a>
-                        </li>
+                        </div>
                     <% }) %>
-                </ul>
-            </nav>
-            <div class="columns">
-                <% articles.forEach(article=>{ %>
-                    <div class="column is-one-third animated zoomIn">
-                        <a href="/article/<%= article.title %>?type=<%= type %>">
-                            <div class="card">
-                                <div class="card-image">
-                                    <figure class="image is-4by3">
-                                        <img src="data:image/jpg;base64,<%= article.cover %>"
-                                             alt="Placeholder image">
-                                    </figure>
-                                </div>
-                                <div class="card-content content">
-                                    <p><%= article.title %></p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                <% }) %>
+                </div>
             </div>
         </div>
     </div>
 </section>
 </body>
+<script>
+  var $s = document.getElementById('search-input'),
+      $c = document.getElementById('content-m');
+  $s.onfocus = function () {
+    $c.classList.add('is-light');
+    $c.classList.remove('is-white');
+  }
+  $s.onblur = function () {
+    $c.classList.add('is-white');
+    $c.classList.remove('is-light')
+  }
+</script>
 </html>

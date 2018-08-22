@@ -36,6 +36,7 @@ router.get('/', async ctx => {
     ...getCommonRecord(ctx),
     title,
     content,
+    caption: title,
   })
 }).get('/donate', async (ctx, next) => {
   await ctx.render('donate', getCommonRecord(ctx))
