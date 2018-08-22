@@ -36,6 +36,7 @@ router.get('/', async ctx => {
     ...getCommonRecord(ctx),
     title,
     content,
+    type,
     caption: title,
   })
 }).get('/donate', async (ctx, next) => {

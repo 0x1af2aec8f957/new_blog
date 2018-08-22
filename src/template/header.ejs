@@ -1,5 +1,4 @@
-<div class="hero-head">
-    <nav class="navbar">
+<nav class="navbar">
         <!--<div id="specialShadow" class="bd-special-shadow" style="opacity: 1;transform: scaleY(1);"></div>-->
         <div class="container">
             <div class="navbar-brand">
@@ -9,11 +8,15 @@
                 <style>
                     @media screen and (max-width: 1087px){
                         .text-ellipsis{
-                            max-width: 36.666%
+                            max-width: 36.666%;
                         }
                     }
+
+                    .text-ellipsis{
+                        line-height: 2.222rem;
+                    }
                 </style>
-                <h1 class="navbar-item text-ellipsis has-text-centered">T：<%- caption %></h1>
+                <h1 class="navbar-item text-ellipsis has-text-centered"><%- caption %></h1>
                 <span id="navbar-burger" class="navbar-burger burger" data-target="navbarMenuHeroB">
             <span></span>
             <span></span>
@@ -51,4 +54,3 @@
         $m.classList[$m.className.indexOf('is-active') > -1 ? 'remove' : 'add']('is-active');
       }
     </script>
-</div>

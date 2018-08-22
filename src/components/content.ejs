@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="/atom-one-light.css">
     <script src="/highlight.pack.js"></script>
     <style>
-        .container.is-widescreen{
+        .container.is-widescreen {
             max-width: 100%;
             /*word-wrap:break-word;
             white-space:normal;
@@ -17,13 +17,27 @@
 <body>
 <!-- Welcome to <%= host %> -->
 <section class="hero is-white is-fullheight">
-    <% include ../template/header %>
+    <div class="hero-head hero is-dark">
+        <% include ../template/header %>
+    </div>
     <div class="hero-body">
         <div class="container is-widescreen">
             <div class="content is-8 hero">
                 <%- content %>
             </div>
         </div>
+    </div>
+    <div class="hero-foot">
+        <footer class="footer hero is-dark padding-1rem">
+            <div class="container">
+                <p class="text-left">文章勘误？去
+                    <a class="link-color" target="_blank"
+                       href="https://github.com/noteScript/new_blog/tree/master/view/<%= type %>/<%= title %>/index.md">提交ISSUE</a>
+                    修正本文。
+                </p>
+                <p class="text-right"><%- copyright %></p>
+            </div>
+        </footer>
     </div>
 </section>
 </body>
