@@ -1,21 +1,13 @@
 // https://github.com/alexmingoia/koa-router
 const Router = require('koa-router')
 const {execSync} = require('child_process')
-const {
-  getCommonRecord,
-  resolve,
-  getDirectorys,
-  base64_encode,
-  mdToHtml,
-} = require('./common')
+const {getCommonRecord} = require('./common')
 const {PROCESS_DIR} = require('./constant')
 const db = require('../db')
 
 db.main()
 
 const router = new Router()
-
-const SORT_KEY = 'time'
 
 router.get('/', async (ctx, next) => {
   // ctx.router available
@@ -31,11 +23,9 @@ router.get('/', async (ctx, next) => {
   await ctx.render('article', {
     ...getCommonRecord(ctx),
     type,
-    types: types.sort(),
+    types,
     keyword,
-    articles: articleFilters.sort((o, n) => { // articles sort[time]
-      return o[SORT_KEY] < n[SORT_KEY] ? 1 : o[SORT_KEY] > n[SORT_KEY] ? -1 : 0
-    }),
+    articles: articleFilters,
   })
 }).get('/article/:type/:name', async ctx => {
   const {articles} = db
