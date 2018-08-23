@@ -3,7 +3,15 @@
 }
 
 .padding-1rem {
-    padding: 1rem !important;
+    padding: 1em !important;
+}
+
+.padding-right-half {
+    padding-right: .5em !important;
+}
+
+.padding-left-half {
+    padding-left: .5em !important;
 }
 
 .mask-layer {
@@ -21,14 +29,14 @@
     display: inline-block !important;
 }
 
-.text-center{
+.text-center {
     text-align: center;
 }
 
-.text-left{
+.text-left {
     text-align: left;
 }
 
-.text-right{
+.text-right {
     text-align: right;
 }

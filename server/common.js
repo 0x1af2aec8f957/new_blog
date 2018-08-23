@@ -8,6 +8,8 @@ const converter = new showdown.Converter()
 
 const markdownToHtml = markdown => converter.makeHtml(markdown)
 
+const strToTimeStamp = str => Date.parse(new Date(str.replace(/-/g, '/')))
+
 const getFiles = dir => { // Get all files
   let results = []
   fs.readdirSync(dir).forEach(file => {
@@ -75,6 +77,7 @@ module.exports = {
   getDirectorys,
   getCommonRecord,
   format,
+  strToTimeStamp,
   base64_encode,
   mdToHtml,
 }

@@ -32,16 +32,16 @@
 <body>
 <!-- Welcome to <%= host %> -->
 <section class="hero is-white is-fullheight transition-all" id="content-m">
-    <div class="hero-head">
+    <div class="hero-head animated fadeInDown">
     <% include ../template/header %>
     </div>
     <div class="hero-body">
         <div class="container">
             <div class="field is-grouped is-grouped-centered">
                 <div class="control">
-                    <input id="search-input" class="input" type="text" placeholder="Find articles">
+                    <input id="search-input" class="input" type="text" placeholder="Find articles" value="<%= keyword %>">
                 </div>
-                <div class="control">
+                <div class="control" onclick="search()">
                     <a class="button is-info">
                         Search
                     </a>
@@ -50,7 +50,7 @@
             <div id="content-c">
                 <nav class="breadcrumb has-bullet-separator is-small" aria-label="breadcrumbs">
                     <ul class="animated slideInLeft nav-bar">
-                        <% nav.forEach(item=>{ %>
+                        <% types.forEach(item=>{ %>
                             <li>
                                 <a class="<%= type === item ? 'is-active' : '' %>"
                                    href="/article?type=<%= item %>"><%= item %>
@@ -59,10 +59,11 @@
                         <% }) %>
                     </ul>
                 </nav>
+                <% if (articles.length) { %>
                 <div class="columns">
                     <% articles.forEach(article=>{ %>
                         <div class="column is-one-fifth animated zoomIn">
-                            <a href="/article/<%= article.title %>?type=<%= type %>">
+                            <a href="/article/<%= article.type %>/<%= article.title %>">
                                 <div class="card">
                                     <div class="card-image">
                                         <figure class="image is-2by1">
@@ -71,13 +72,17 @@
                                         </figure>
                                     </div>
                                     <div class="card-content content padding-1rem">
-                                        <p class="subtitle is-7"><%= article.title %></p>
+                                        <p class="subtitle is-7"><i class="fas fa-file-word padding-right-half"></i><%= article.title %></p>
                                     </div>
                                 </div>
                             </a>
                         </div>
                     <% }) %>
                 </div>
+                <% } %>
+                <% if (!articles.length) { %>
+                    <p class="has-text-centered has-text-grey-dark padding-1rem">书山有路勤为径，学海无涯苦作舟。<sub>&nbsp;—&nbsp;&nbsp;韩愈</sub></p>
+                <% } %>
             </div>
         </div>
     </div>
@@ -92,7 +97,21 @@
   }
   $s.onblur = function () {
     $c.classList.add('is-white');
-    $c.classList.remove('is-light')
+    $c.classList.remove('is-light');
+  }
+
+  $s.onkeydown = function(event){
+    if (event.keyCode === 13) {
+      event.keyCode = 0;
+      event.returnValue = false;
+      search()
+    }
+  }
+
+  function search(){
+    if($s.value.replace(/\s/gm, '').length){
+      location.href = location.origin + location.pathname + '?keyword=' + $s.value;
+    }
   }
 </script>
 </html>
