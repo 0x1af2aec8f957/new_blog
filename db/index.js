@@ -46,13 +46,21 @@ const run = main => {
       })
     })
   }
+
+  types.sort() // types sort
+  articles.sort((o, n) => { // articles sort[time]
+    return o[SORT_KEY] < n[SORT_KEY]
+      ? 1
+      : o[SORT_KEY] > n[SORT_KEY]
+        ? -1
+        : 0
+  })
+
   return main && main()
 }
 
 module.exports = {
-  articles: articles.sort((o, n) => { // articles sort[time]
-    return o[SORT_KEY] < n[SORT_KEY] ? 1 : o[SORT_KEY] > n[SORT_KEY] ? -1 : 0
-  }),
-  types: types.sort(),
+  articles,
+  types,
   main: run,
 }
