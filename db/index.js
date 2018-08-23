@@ -49,7 +49,7 @@ const run = main => {
 }
 
 module.exports = {
-  articles:attrSort(articles,'time',1),
-  types:types.sort(),
+  articles,
+  types,
   main: run,
 }
