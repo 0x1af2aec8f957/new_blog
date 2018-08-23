@@ -53,7 +53,7 @@
                         <% types.forEach(item=>{ %>
                             <li>
                                 <a class="<%= type === item ? 'is-active' : '' %>"
-                                   href="/article?type=<%= item %>"><%= item %>
+                                   href="/article?type=<%= item %>&keyword=<%= keyword %>"><%= item %>
                                 </a>
                             </li>
                         <% }) %>
@@ -110,7 +110,7 @@
 
   function search(){
     if($s.value.replace(/\s/gm, '').length){
-      location.href = location.origin + location.pathname + '?keyword=' + $s.value;
+      location.href = location.origin + location.pathname + '?keyword=' + $s.value + '&type=' + '<%= type %>';
     }
   }
 </script>

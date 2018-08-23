@@ -16,9 +16,9 @@ router.get('/', async (ctx, next) => {
   const {type = '', keyword = ''} = ctx.query
   const {articles, types} = db
   const articleFilters = articles.filter(
-    article => article.type.includes(keyword) ||
+    article => article.type.includes(type) && (
       article.title.includes(keyword) ||
-      article.content.includes(keyword))
+      article.content.includes(keyword)))
 
   await ctx.render('article', {
     ...getCommonRecord(ctx),
