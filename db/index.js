@@ -5,13 +5,13 @@ const {
   base64_encode,
   mdToHtml,
   strToTimeStamp,
-  attrSort
 } = require('../server/common')
 
 const CATALOG_ONE = 'view'
 const ARTICLE_SUFFIX = '.md'
 const COVER_SUFFIX = '.jpg'
 const TIME__SUFFIX = ' 00:00:00:000'
+const SORT_KEY = 'time'
 
 const articles = [] // article list
 const types = [] // article type
@@ -39,7 +39,8 @@ const run = main => {
       articles.push({ // update article list
         type,
         title: article.split('/').slice(-1)[0],
-        time: strToTimeStamp(mdFile.split('/').slice(-1)[0].replace(ARTICLE_SUFFIX, '')),
+        time: strToTimeStamp(
+          mdFile.split('/').slice(-1)[0].replace(ARTICLE_SUFFIX, '')),
         content: mdToHtml(resolve(CATALOG_ONE, type, article, mdFile)),
         cover: base64_encode(resolve(CATALOG_ONE, type, article, coverFile)),
       })
@@ -49,7 +50,9 @@ const run = main => {
 }
 
 module.exports = {
-  articles,
-  types,
+  articles: articles.sort((o, n) => { // articles sort[time]
+    return o[SORT_KEY] < n[SORT_KEY] ? 1 : o[SORT_KEY] > n[SORT_KEY] ? -1 : 0
+  }),
+  types: types.sort(),
   main: run,
 }
