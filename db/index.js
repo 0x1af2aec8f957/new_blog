@@ -5,6 +5,7 @@ const {
   base64_encode,
   mdToHtml,
   strToTimeStamp,
+  attrSort
 } = require('../server/common')
 
 const CATALOG_ONE = 'view'
@@ -38,8 +39,7 @@ const run = main => {
       articles.push({ // update article list
         type,
         title: article.split('/').slice(-1)[0],
-        time: strToTimeStamp(
-          mdFile.split('/').slice(-1)[0].replace(ARTICLE_SUFFIX, '')),
+        time: strToTimeStamp(mdFile.split('/').slice(-1)[0].replace(ARTICLE_SUFFIX, '')),
         content: mdToHtml(resolve(CATALOG_ONE, type, article, mdFile)),
         cover: base64_encode(resolve(CATALOG_ONE, type, article, coverFile)),
       })
@@ -49,7 +49,7 @@ const run = main => {
 }
 
 module.exports = {
-  articles,
-  types,
+  articles:attrSort(articles,'time',1),
+  types:types.sort(),
   main: run,
 }

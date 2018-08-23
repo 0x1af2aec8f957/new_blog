@@ -22,6 +22,12 @@ const getFiles = dir => { // Get all files
   return results
 }
 
+const attrSort = (array, attr, rev = 1) => {
+  return rev = rev ? 1 : -1, array.sort((a, b) => {
+    return [a, b] = [a[attr], b[attr]], a < b ? rev * -1 : a > b ? rev * 1 : 0
+  })
+}
+
 const getDirectorys = dir => { // Get all first level folders
   let results = []
   fs.readdirSync(dir).forEach(filePath => {
@@ -77,6 +83,7 @@ module.exports = {
   getDirectorys,
   getCommonRecord,
   format,
+  attrSort,
   strToTimeStamp,
   base64_encode,
   mdToHtml,

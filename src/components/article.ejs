@@ -37,13 +37,13 @@
     </div>
     <div class="hero-body">
         <div class="container">
-            <div class="field is-grouped is-grouped-centered">
+            <div class="field is-grouped is-grouped-centered animated fadeInDown">
                 <div class="control">
                     <input id="search-input" class="input" type="text" placeholder="Find articles" value="<%= keyword %>">
                 </div>
                 <div class="control" onclick="search()">
                     <a class="button is-info">
-                        Search
+                        <i class="fas fa-search padding-right-half"></i>Search
                     </a>
                 </div>
             </div>
@@ -60,19 +60,19 @@
                     </ul>
                 </nav>
                 <% if (articles.length) { %>
-                <div class="columns">
+                <div class="columns animated fadeInUp">
                     <% articles.forEach(article=>{ %>
                         <div class="column is-one-fifth animated zoomIn">
                             <a href="/article/<%= article.type %>/<%= article.title %>">
                                 <div class="card">
                                     <div class="card-image">
                                         <figure class="image is-2by1">
-                                            <img src="data:image/jpg;base64,<%= article.cover %>"
-                                                 alt="Placeholder image">
+                                            <img src="data:image/jpg;base64,<%= article.cover %>" alt="Placeholder image">
                                         </figure>
                                     </div>
                                     <div class="card-content content padding-1rem">
                                         <p class="subtitle is-7"><i class="fas fa-file-word padding-right-half"></i><%= article.title %></p>
+                                        <p class="subtitle is-7"><i class="fas fa-clock padding-right-half"></i><%= new Date(article.time).toLocaleDateString() %>，GMT+0800</p>
                                     </div>
                                 </div>
                             </a>
@@ -81,7 +81,7 @@
                 </div>
                 <% } %>
                 <% if (!articles.length) { %>
-                    <p class="has-text-centered has-text-grey-dark padding-1rem">书山有路勤为径，学海无涯苦作舟。<sub>&nbsp;—&nbsp;&nbsp;韩愈</sub></p>
+                    <p class="has-text-centered has-text-grey-dark padding-1rem animated fadeInUp">书山有路勤为径，学海无涯苦作舟。<sub>&nbsp;—&nbsp;&nbsp;韩愈</sub></p>
                 <% } %>
             </div>
         </div>
@@ -104,7 +104,7 @@
     if (event.keyCode === 13) {
       event.keyCode = 0;
       event.returnValue = false;
-      search()
+      search();
     }
   }
 

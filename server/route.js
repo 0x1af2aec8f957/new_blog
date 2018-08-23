@@ -37,12 +37,15 @@ router.get('/', async (ctx, next) => {
   const {articles} = db
   const {name: title, type} = ctx.params
   const {content} = articles.find(ac => ac.title === title && ac.type === type)
+  const commonRecord = getCommonRecord(ctx)
 
   await ctx.render('content', {
-    ...getCommonRecord(ctx),
+    ...commonRecord,
     title,
     content,
     type,
+    keywords: [...commonRecord.keywords, type, title],
+    description: type + title,
     caption: title,
   })
 }).get('/donate', async ctx => {
@@ -50,7 +53,9 @@ router.get('/', async (ctx, next) => {
 }).get('/about', async ctx => {
   await ctx.render('about', getCommonRecord(ctx))
 }).post('/pushCode', ctx => {
-  ctx.body = execSync(`./git_pull.sh ${PROCESS_DIR}`/*,{cwd:PROCESS_DIR}*/)
+  const stdout = execSync(`./git_pull.sh ${PROCESS_DIR}`/*,{cwd:PROCESS_DIR}*/)
+  db.main()
+  ctx.body = stdout
 })
 
 module.exports = router

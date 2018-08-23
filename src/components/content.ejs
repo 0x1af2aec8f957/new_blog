@@ -22,7 +22,7 @@
     </div>
     <div class="hero-body">
         <div class="container is-widescreen">
-            <div class="content is-8 hero">
+            <div class="content is-8 hero animated fadeIn">
                 <%- content %>
             </div>
         </div>
@@ -31,8 +31,10 @@
         <footer class="footer hero is-dark padding-1rem">
             <div class="container">
                 <p class="text-left">文章勘误？去
+                    <i class="fab fa-github"></i>
+                    提交
                     <a class="link-color" target="_blank"
-                       href="https://github.com/noteScript/new_blog/tree/master/view/<%= type %>/<%= title %>/index.md">提交ISSUE</a>
+                       href="https://github.com/noteScript/new_blog/tree/master/view/<%= type %>/<%= title %>/index.md">ISSUE</a>
                     修正本文。
                 </p>
                 <p class="text-right"><%- copyright %></p>
