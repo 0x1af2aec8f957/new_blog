@@ -15,6 +15,8 @@ db.main()
 
 const router = new Router()
 
+const SORT_KEY = 'time'
+
 router.get('/', async (ctx, next) => {
   // ctx.router available
   await ctx.render('home', getCommonRecord(ctx))
@@ -29,9 +31,11 @@ router.get('/', async (ctx, next) => {
   await ctx.render('article', {
     ...getCommonRecord(ctx),
     type,
-    types,
+    types: types.sort(),
     keyword,
-    articles: articleFilters,
+    articles: articleFilters.sort((o, n) => { // articles sort[time]
+      return o[SORT_KEY] < n[SORT_KEY] ? 1 : o[SORT_KEY] > n[SORT_KEY] ? -1 : 0
+    }),
   })
 }).get('/article/:type/:name', async ctx => {
   const {articles} = db
