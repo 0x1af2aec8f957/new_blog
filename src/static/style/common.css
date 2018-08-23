@@ -1,0 +1,42 @@
+.link-color {
+    color: #3273dc !important;
+}
+
+.padding-1rem {
+    padding: 1em !important;
+}
+
+.padding-right-half {
+    padding-right: .5em !important;
+}
+
+.padding-left-half {
+    padding-left: .5em !important;
+}
+
+.mask-layer {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.transition-all {
+    transition: all .25s ease-in-out;
+}
+
+.text-ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: inline-block !important;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}

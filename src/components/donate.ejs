@@ -6,34 +6,31 @@
 <body>
 <!-- Welcome to <%= host %> -->
 <section class="hero is-white is-bold is-fullheight">
+    <div class="hero-head">
     <% include ../template/header %>
+    </div>
     <div class="hero-body hero is-block">
         <div class="content">
-            <p>站内所有文章都基于
-                <a style="color:#3273dc" target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh">署名-非商业性使用-禁止演绎
-                    4.0 协议 </a>
-                进行共享，</p>
-            <p>开源项目都以<a style="color:#3273dc" target="_blank" href="https://opensource.org/licenses/MIT"> MIT </a>协议发布，</p>
-            <p>非常感谢你的支持，我会继续加倍努力创作。</p>
+            <div class="animated fadeIn padding-1rem">
+                <p>站内所有文章都基于
+                    <a class="link-color" target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh">署名-非商业性使用-禁止演绎
+                        4.0 协议 </a>
+                    进行共享，</p>
+                <p>开源项目都以<a class="link-color" target="_blank" href="https://opensource.org/licenses/MIT"> MIT </a>协议发布，</p>
+                <p>非常感谢你的支持，我会加倍努力创作。</p>
+            </div>
             <div class="columns">
                 <div class="column is-one-third animated fadeInUp">
                     <div class="card">
                         <div class="card-image">
                             <figure class="image is-4by4 is-marginless">
-                                <img src="https://lqzhgood.github.io/bulma-docs-cn/images/placeholders/128x128.png"
-                                     alt="Placeholder image">
+                                <img src="/weixin-pay.jpg" alt="pay-qrcode">
                             </figure>
                         </div>
                         <div class="card-content">
                             <div class="media">
-                                <div class="media-left">
-                                    <figure class="image is-48x48">
-                                        <img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=4205085884,59581111&fm=27&gp=0.jpg"
-                                             alt="Placeholder image">
-                                    </figure>
-                                </div>
                                 <div class="media-content">
-                                    <p class="title is-4">支付宝</p>
+                                    <p class="title is-4 has-text-centered">支付宝</p>
                                 </div>
                             </div>
                         </div>
@@ -43,26 +40,24 @@
                     <div class="card">
                         <div class="card-image">
                             <figure class="image is-4by4 is-marginless">
-                                <img src="https://lqzhgood.github.io/bulma-docs-cn/images/placeholders/128x128.png"
-                                     alt="Placeholder image">
+                                <img src="/zhifubao-pay.jpg" alt="pay-qrcode">
                             </figure>
                         </div>
                         <div class="card-content">
                             <div class="media">
-                                <div class="media-left">
-                                    <figure class="image is-48x48">
-                                        <img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1156467511,3418246500&fm=27&gp=0.jpg"
-                                             alt="aliPay-logo">
-                                    </figure>
-                                </div>
                                 <div class="media-content">
-                                    <p class="title is-4">微信</p>
+                                    <p class="title is-4 has-text-centered">微信</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <p class="animated fadeInRight delay-2s">你也可以通过
+                <a target="_blank" title="DigitalOcean" class="has-text-link" href="https://m.do.co/c/ecb21c67645c">购买
+                    <i class="fab fa-digital-ocean"></i>
+                    服务器</a>的方式，来减轻该服务器压力。
+            </p>
         </div>
     </div>
 </section>

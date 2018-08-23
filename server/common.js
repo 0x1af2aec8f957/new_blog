@@ -8,6 +8,8 @@ const converter = new showdown.Converter()
 
 const markdownToHtml = markdown => converter.makeHtml(markdown)
 
+const strToTimeStamp = str => Date.parse(new Date(str.replace(/-/g, '/')))
+
 const getFiles = dir => { // Get all files
   let results = []
   fs.readdirSync(dir).forEach(file => {
@@ -18,6 +20,12 @@ const getFiles = dir => { // Get all files
       : results.concat(getFiles(file)) // Is directory [...results,...readFiles(file)]
   })
   return results
+}
+
+const attrSort = (array, attr, rev = 1) => {
+  return rev = rev ? 1 : -1, array.sort((a, b) => {
+    return [a, b] = [a[attr], b[attr]], a < b ? rev * -1 : a > b ? rev * 1 : 0
+  })
 }
 
 const getDirectorys = dir => { // Get all first level folders
@@ -65,7 +73,8 @@ const getCommonRecord = ({
   subtitle: '这里记录着我的进取之道，本站发布的所有文章涵盖但不仅限于技术。',
   description: '权川的个人网站',
   date: date.toLocaleString(),
-  copyright: `Copyright © ️M - ${date.getFullYear()}`,
+  caption: '', // article title
+  copyright: `Copyright © ️<a class="link-color" target="_blank" href="https://github.com/noteScript">noteScript</a> - ${date.getFullYear()}`,
 })
 
 module.exports = {
@@ -74,6 +83,8 @@ module.exports = {
   getDirectorys,
   getCommonRecord,
   format,
+  attrSort,
+  strToTimeStamp,
   base64_encode,
   mdToHtml,
 }
