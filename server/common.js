@@ -72,7 +72,7 @@ const getCommonRecord = ({
   title: '权川的个人网站',
   subtitle: '这里记录着我的进取之道，本站发布的所有文章涵盖但不仅限于技术。',
   description: '权川的个人网站',
-  date: date.toLocaleString(),
+  date: date.toUTCString(),
   caption: '', // article title
   copyright: `Copyright © ️<a class="link-color" target="_blank" href="https://github.com/noteScript">noteScript</a> - ${date.getFullYear()}`,
 })
