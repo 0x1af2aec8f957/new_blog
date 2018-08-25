@@ -1,3 +1,17 @@
+pre:before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f1c9";
+    font-weight: 900;
+    -webkit-font-smoothing: antialiased;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+    display: inline-block;
+    font-size: 1em;
+    color: #a0a1a7;
+}
+
 .link-color {
     color: #3273dc !important;
 }
