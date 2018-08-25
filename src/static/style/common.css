@@ -1,3 +1,8 @@
+html, body {
+    width: 100%;
+    overflow: hidden;
+}
+
 pre:before {
     font-family: "Font Awesome 5 Free";
     content: "\f1c9";
