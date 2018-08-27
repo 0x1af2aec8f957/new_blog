@@ -8,12 +8,18 @@
         }
 
         .nav-bar::before {
-            content: "文章分类...";
-            transform: scale(.76);
-            color: #7a7a7a
+            content: "\f02e";
+            color: #7a7a7a;
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            padding-right: 0.5em;
         }
 
         @media screen and (max-width: 1087px) {
+            .nav-bar::before{
+                display: none;
+            }
+
             .breadcrumb ol, .breadcrumb ul {
                 flex-direction: column;
             }
