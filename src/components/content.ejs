@@ -19,6 +19,7 @@
 
         .markdown-content img {
             box-shadow: 0 0 3px rgba(10,10,10,.5);
+            cursor: zoom-in;
         }
 
         @media screen and (min-width: 1087px) {
@@ -57,6 +58,43 @@
         </footer>
     </div>
 </section>
+<div class="modal animated" id="images-preview">
+    <div class="modal-background" onclick="closePreview()"></div>
+    <div class="modal-content">
+        <div class="image">
+            <img src="https://lqzhgood.github.io/bulma-docs-cn/images/placeholders/1280x960.png"
+                 alt="preview-image"
+                 onclick="closePreview()"
+                 style="cursor: zoom-out">
+        </div>
+    </div>
+    <!--<button class="modal-close is-large" aria-label="close" onclick="closePreview()"></button>-->
+</div>
 </body>
-<script>hljs.initHighlightingOnLoad()</script>
+<script type="application/javascript">
+    hljs.initHighlightingOnLoad(); // javaScript Highlight
+
+    var $images = document.querySelectorAll('.markdown-content img');
+    var $previewEl = document.getElementById('images-preview');
+    var $previewImage = document.querySelector('#images-preview img');
+    for (var i=0;i<$images.length;i++) {
+      $images[i].onclick = function(){
+        $previewImage.setAttribute('src',this.getAttribute('src'));
+        $previewEl.classList.remove('bounceOutDown');
+        $previewEl.classList.add('bounceInRight');
+        $previewEl.classList.add('is-active');
+        return false;
+      };
+    }
+
+    function closePreview(){
+      $previewEl.classList.remove('bounceInRight');
+      $previewEl.classList.add('bounceOutDown');
+      var closeOut = setTimeout(function(){
+        $previewEl.classList.remove('is-active');
+        clearTimeout(closeOut);
+      },1000)
+      return false;
+    }
+</script>
 </html>
