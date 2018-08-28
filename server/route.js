@@ -4,6 +4,7 @@ const {execSync} = require('child_process')
 const {getCommonRecord} = require('./common')
 const {PROCESS_DIR} = require('./constant')
 const db = require('../db')
+const sendEmail = require('./sendEmail')
 
 db.main()
 
@@ -47,9 +48,23 @@ router.get('/', async (ctx, next) => {
 }).get('/about', async ctx => {
   await ctx.render('about', getCommonRecord(ctx))
 }).post('/pushCode', ctx => {
+  console.log(ctx.request.body)
+  const {head_commit} = ctx.request.body
+  const {title} = getCommonRecord(ctx)
   const stdout = execSync(`./git_pull.sh ${PROCESS_DIR}`/*,{cwd:PROCESS_DIR}*/)
+
   db.main()
-  ctx.body = stdout
+
+  const body = {
+    stdout,
+    title,
+    subject: `${head_commit.committer.name}对站点提交了代码`,
+    message: head_commit.message,
+    bcc: head_commit.committer.email,
+  }
+
+  sendEmail(body)
+  ctx.body = body
 })
 
 module.exports = router
