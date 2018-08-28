@@ -74,7 +74,7 @@ const getCommonRecord = ({
   description: '权川的个人网站',
   date: date.toUTCString(),
   caption: '', // article title
-  copyright: `Copyright © ️<a class="link-color" target="_blank" href="https://github.com/noteScript">noteScript</a> - ${date.getFullYear()}`,
+  copyright: `Copyright © ️<a class="link-color" target="_blank" href="https://github.com/noteScript/new_blog">noteScript</a> - ${date.getFullYear()}`,
 })
 
 module.exports = {
