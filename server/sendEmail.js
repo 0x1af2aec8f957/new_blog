@@ -3,7 +3,7 @@ const {SUBSCRIBE_USERS, EmailAuth} = require('../config') // Subscribe user emai
 
 const transporter = nodemailer.createTransport({
   // service: 'hotmail',
-  service: 'qq',
+  service: 'QQ',
   port: 465,
   secure: false, // true for 465, false for other ports
   auth: EmailAuth,
