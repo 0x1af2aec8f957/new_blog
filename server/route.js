@@ -48,7 +48,7 @@ router.get('/', async (ctx, next) => {
 }).get('/about', async ctx => {
   await ctx.render('about', getCommonRecord(ctx))
 }).post('/pushCode', ctx => {
-  console.log(ctx.request.body)
+
   const {head_commit} = ctx.request.body
   const {title} = getCommonRecord(ctx)
   const stdout = execSync(`./git_pull.sh ${PROCESS_DIR}`/*,{cwd:PROCESS_DIR}*/)
