@@ -48,17 +48,21 @@ router.get('/', async (ctx, next) => {
 }).get('/about', async ctx => {
   await ctx.render('about', getCommonRecord(ctx))
 }).post('/pushCode', ctx => {
-  console.log(ctx.request.body)
-  const {head_commit} = ctx.request.body
+
+  const {head_commit, repository, ref} = ctx.request.body
   const {title} = getCommonRecord(ctx)
-  const stdout = execSync(`./git_pull.sh ${PROCESS_DIR}`/*,{cwd:PROCESS_DIR}*/)
+  const stdout = execSync(`"./git_pull.sh" ${PROCESS_DIR}`
+    /*,{cwd:PROCESS_DIR}*/)
 
   db.main()
 
   const body = {
-    stdout,
+    stdout: `git终端消息：${stdout.toString()}`,
     title,
+    name: `提交人：${head_commit.committer.name}`,
     subject: `${head_commit.committer.name}对站点提交了代码`,
+    repository: `提交仓库：${repository.name}`,
+    branch: `提交分支：${ref.split('/').slice(-1)[0]}`,
     message: head_commit.message,
     bcc: head_commit.committer.email,
   }
