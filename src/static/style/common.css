@@ -3,6 +3,17 @@ html, body {
     overflow: hidden;
 }
 
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4,
+.markdown-content h5,
+.markdown-content h6 {
+    border-bottom: 1px dotted #dbdbdb;
+    border-top: 1px dotted #dbdbdb;
+    padding: 1rem 0;
+}
+
 pre:before {
     font-family: "Font Awesome 5 Free";
     content: "\f1c9";
@@ -12,7 +23,7 @@ pre:before {
     font-variant: normal;
     text-rendering: auto;
     line-height: 1;
-    display: inline-block;
+    display: block;
     font-size: 1em;
     color: #a0a1a7;
 }
