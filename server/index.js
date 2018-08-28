@@ -13,8 +13,8 @@ const app = new Koa()
 app
 .use(views)
 .use(compose(statics))
+.use(bodyParser())
 .use(router.routes())
 .use(router.allowedMethods())
-.use(bodyParser())
 
 module.exports = app
