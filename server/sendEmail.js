@@ -28,5 +28,11 @@ module.exports = option => {
   mailOptions.bcc = option.bcc
 
   return transporter.sendMail(mailOptions,
-    (error, info) => option.callback && option.callback(error || info))
+    (error, info) => {
+      if (error) {
+        console.error(error)
+      } else {
+        option.callback && option.callback(info)
+      }
+    })
 }
