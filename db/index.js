@@ -8,8 +8,8 @@ const {
 } = require('../server/common')
 
 const CATALOG_ONE = 'view'
-const ARTICLE_SUFFIX = '.md'
-const COVER_SUFFIX = '.jpg'
+const ARTICLE_SUFFIX = /\.(md|html)$/im
+const COVER_SUFFIX = /.+\.(gif|png|jpg)$/im
 const TIME__SUFFIX = ' 00:00:00:000'
 const SORT_KEY = 'time'
 
@@ -33,8 +33,8 @@ const run = main => {
   for (let {type, folder} of scrap) {
     folder.forEach(article => {
       const files = getFiles(resolve(CATALOG_ONE, type, article))
-      const mdFile = files.find(file => file.includes(ARTICLE_SUFFIX))
-      const coverFile = files.find(file => file.includes(COVER_SUFFIX))
+      const mdFile = files.find(file => ARTICLE_SUFFIX.test(file))
+      const coverFile = files.find(file => COVER_SUFFIX.test(file))
 
       articles.push({ // update article list
         type,
