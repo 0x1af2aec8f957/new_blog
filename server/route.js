@@ -16,10 +16,12 @@ router.get('/', async (ctx, next) => {
 }).get('/article', async (ctx, next) => {
   const {type = '', keyword = ''} = ctx.query
   const {articles, types} = db
+  const regExp = new RegExp(keyword, 'im')
+
   const articleFilters = articles.filter(
-    article => article.type.includes(type) && (
-      article.title.includes(keyword) ||
-      article.content.includes(keyword)))
+    article => article.type.includes(type) &&
+      (regExp.test(article.title) || regExp.test(article.content)
+      ))
 
   await ctx.render('article', {
     ...getCommonRecord(ctx),
