@@ -15,6 +15,7 @@
     "koa-static": "^5.0.0",
     "koa-views": "^6.1.4",
     "nodemailer": "^4.6.8",
-    "showdown": "^1.8.6"
+    "showdown": "^1.8.6",
+    "showdown-xss-filter": "^0.2.0"
   }
 }

@@ -2,9 +2,15 @@ const path = require('path')
 const fs = require('fs')
 // https://github.com/showdownjs/showdown
 const showdown = require('showdown')
+const xssFilter = require('showdown-xss-filter')
+const {classMap} = require('../config')
 
 const resolve = (d, ...p) => path.resolve(d, ...p) // Return to absolute path of file
-const converter = new showdown.Converter()
+const converter = new showdown.Converter({
+  tables: true,
+  extensions: [xssFilter, ...classMap],
+  noHeaderId: true, // important to add this, else regex match doesn't work
+})
 
 const markdownToHtml = markdown => converter.makeHtml(markdown)
 

@@ -14,6 +14,22 @@ html, body {
     padding: 1rem 0;
 }
 
+.markdown-content img {
+    box-shadow: 0 0 3px rgba(10,10,10,.5);
+    cursor: zoom-in;
+}
+
+@media screen and (min-width: 1087px) {
+    .markdown-content img {
+        max-width: 50%;
+        margin: auto;
+    }
+}
+
+.markdown-content a{
+    color: #3273dc !important;
+}
+
 pre:before {
     font-family: "Font Awesome 5 Free";
     content: "\f1c9";
