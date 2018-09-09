@@ -53,8 +53,7 @@ router.get('/', async (ctx, next) => {
 
   const {head_commit, repository, ref} = ctx.request.body
   const {title} = getCommonRecord(ctx)
-  const stdout = execSync(`"./git_pull.sh" ${PROCESS_DIR}`
-    /*,{cwd:PROCESS_DIR}*/)
+  const stdout = execSync(`"./git_pull.sh"`, {cwd: PROCESS_DIR})
 
   db.main()
 

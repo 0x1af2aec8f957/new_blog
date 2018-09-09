@@ -1,4 +1,5 @@
-const nodemailer = require('nodemailer')
+// custom send email
+/* const nodemailer = require('nodemailer')
 const {SUBSCRIBE_USERS, EmailAuth} = require('../config') // Subscribe user email
 
 const transporter = nodemailer.createTransport({
@@ -41,4 +42,36 @@ module.exports = option => {
       }
       transporter.close()
     })
+} */
+
+// using SendGrid's v3 Node.js Library send email
+
+// https://github.com/sendgrid/sendgrid-nodejs
+const sendEmail = require('@sendgrid/mail')
+const {SENDGRID_API_KEY} = require('./constant')
+const {SUBSCRIBE_USERS, EmailAuth} = require('../config') // Subscribe user email
+
+sendEmail.setApiKey(process.env.SENDGRID_API_KEY || SENDGRID_API_KEY)
+
+const mailOptions = {
+  from: `权川的个人网站 <${EmailAuth.user}>`, // sender address
+  to: '603803799@qq.com', // list of receivers
+  // bcc: SUBSCRIBE_USERS.join(','),
+  subject: 'Hello world', // Subject line
+  text: 'Hello world', // plain text body
+  // html: '<b>Hello world</b>', // html body
+}
+
+module.exports = option => {
+  mailOptions.form = `${option.title} <${EmailAuth.user}>`
+  mailOptions.subject = option.subject
+  mailOptions.text = `
+  ${option.stdout}
+  ${option.name}\n
+  ${option.repository}\n
+  ${option.branch}\n
+  ${option.message}\n
+ `
+  mailOptions.bcc = option.bcc
+  return sendEmail.send(mailOptions)
 }
