@@ -5,6 +5,7 @@ const {getCommonRecord} = require('./common')
 const {PROCESS_DIR} = require('./constant')
 const db = require('../db')
 const sendEmail = require('./sendEmail')
+const {fetchTHistory} = require('./fetchResponse')
 
 db.main()
 
@@ -44,6 +45,7 @@ router.get('/', async (ctx, next) => {
     keywords: [...commonRecord.keywords, type, title],
     description: type + title,
     caption: title,
+    tHistory: await fetchTHistory(),
   })
 }).get('/donate', async ctx => {
   await ctx.render('donate', getCommonRecord(ctx))

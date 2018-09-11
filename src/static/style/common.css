@@ -15,7 +15,7 @@ html, body {
 }
 
 .markdown-content img {
-    box-shadow: 0 0 3px rgba(10,10,10,.5);
+    box-shadow: 0 0 3px rgba(10, 10, 10, .5);
     cursor: zoom-in;
 }
 
@@ -26,7 +26,17 @@ html, body {
     }
 }
 
-.markdown-content a{
+@media screen and (max-width: 1087px) {
+    .mobile-hidden {
+        display: none !important;
+    }
+}
+
+.markdown-content {
+    padding: 3rem 1.5rem !important;
+}
+
+.markdown-content a {
     color: #3273dc !important;
 }
 

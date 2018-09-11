@@ -1,16 +1,41 @@
 <!DOCTYPE html>
-<html website="<%= host %>" date="<%= date %>">
+<html website="<%= host %>" date="<%= date %>" lang="zh-CN">
 <head>
     <% include ../template/head %>
     <link rel="stylesheet" href="/atom-one-light.css">
     <script src="/highlight.pack.js"></script>
     <style>
+        .hero-body{
+            height: calc(100vh - calc(52px + 80px));
+            overflow: hidden;
+            padding: 0;
+        }
+
+        .columns:last-child{
+            margin: 0;
+        }
+
         .container.is-widescreen {
             width: 100%;
             /*word-wrap:break-word;
             white-space:normal;
             word-break:break-all;
             overflow:hidden;*/
+        }
+
+        .hero-body > .columns{
+            width: 100%;
+        }
+
+        .columns,.columns>.column{
+            max-height: 100%;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            margin: 0;
+        }
+
+        .menu-list > li{
+            padding: .5em .75em;
         }
     </style>
 </head>
@@ -21,10 +46,19 @@
         <% include ../template/header %>
     </div>
     <div class="hero-body">
-        <div class="container is-widescreen">
-            <div class="content is-8 hero animated fadeIn markdown-content">
-                <%- content %>
-            </div>
+        <div class="columns">
+            <div class="column is-four-fifths content animated fadeInLeft markdown-content"><%- content %></div>
+            <aside class="column menu animated fadeInRight mobile-hidden">
+                <p class="menu-label"><%- tHistory.date %> in history,UTC-4</p>
+                <ul class="menu-list">
+                    <% tHistory.data.Events.reverse().forEach(item=>{ %>
+                        <li>
+                            <%- item.year %>,<%- item.text %>
+                        </li>
+                    <% }) %>
+                </ul>
+                <p class="menu-label">data from：<a class="has-text-link" href="http://history.muffinlabs.com/#license">muffinlabs</a></p>
+            </aside>
         </div>
     </div>
     <div class="hero-foot">
